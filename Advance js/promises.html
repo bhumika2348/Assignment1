@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API with Promises Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Products List</h2>
+    <div id="products"></div>
+
+    <script>
+        function fetchProducts() {
+            return fetch('https://fakestoreapi.com/products')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json(); 
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    return [];
+                });
+        }
+
+        function displayProducts(products) {
+            const productsDiv = document.getElementById('products');
+            productsDiv.innerHTML = ''; 
+            if (products.length === 0) {
+                productsDiv.innerHTML = '<p>No products available.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <h3>${product.title}</h3>
+                    <img src="${product.image}" alt="${product.title}">
+                    <p>Price: $${product.price}</p>
+                    <p>${product.description}</p>
+                `;
+                productsDiv.appendChild(productDiv);
+            });
+        }
+
+        fetchProducts().then(products => {
+            displayProducts(products);
+        });
+    </script>
+
+</body>
+</html>

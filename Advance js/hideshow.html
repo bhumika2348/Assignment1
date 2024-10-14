@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+    input {
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <h2>Show/Hide Password</h2>
+
+  <input type="password" id="password" placeholder="Enter Password" />
+  <button id="toggleBtn">Show</button>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('toggleBtn');
+
+    toggleButton.addEventListener('click', function () {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleButton.textContent = 'Hide'; 
+      } else {
+        passwordInput.type = 'password';
+        toggleButton.textContent = 'Show'; 
+      }
+    });
+    </script>
+</body>
+</html>

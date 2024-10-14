@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Classes Example</title>
+  <style>
+    .my-class {
+      padding: 10px;
+      margin: 5px;
+      background-color: lightblue;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Select All Classes Example</h2>
+
+  <div class="my-class">Item 1</div>
+  <div class="my-class">Item 2</div>
+  <div class="my-class">Item 3</div>
+  
+  <button id="alertButton">Show Alerts</button>
+
+  <script>
+    const alertButton = document.getElementById('alertButton');
+
+    alertButton.addEventListener('click', function () {
+      const elements = document.querySelectorAll('.my-class');
+      
+      elements.forEach((element, index) => {
+        alert(`Element ${index + 1}: ${element.textContent}`);
+      });
+    });
+  </script>
+
+</body>
+</html>
